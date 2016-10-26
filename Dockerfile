@@ -39,8 +39,8 @@ VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
 
 RUN rm -rf /app 
 
-RUN wget https://www.limesurvey.org/stable-release?download=1907:limesurvey2551%20161026tarbz2 -O limesurvey.tar.bz2
-RUN tar -xvzf limesurvey.tar.bz2
+RUN wget https://www.limesurvey.org/stable-release?download=1908:limesurvey2551%20161026targz -O limesurvey.tar.gz
+RUN tar -xvzf limesurvey.tar.gz
 
 RUN mv limesurvey app; \
 	mkdir -p /uploadstruct; \
