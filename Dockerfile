@@ -3,7 +3,7 @@ FROM ubuntu:trusty
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt && \
+  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt wget && \
   echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 RUN apt-get upgrade -q -y ;\
@@ -37,10 +37,11 @@ ENV PHP_POST_MAX_SIZE 10M
 # Add volumes for MySQL 
 VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
 
-RUN ./run.sh
 RUN rm -rf /app 
 
-ADD limesurvey.tar.bz2 /
+RUN wget https://www.limesurvey.org/stable-release?download=1907:limesurvey2551%20161026tarbz2 -O limesurvey.tar.bz2
+RUN tar -xvzf limesurvey.tar.bz2
+
 RUN mv limesurvey app; \
 	mkdir -p /uploadstruct; \
 	chown -R www-data:www-data /app
