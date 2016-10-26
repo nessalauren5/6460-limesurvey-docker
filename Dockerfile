@@ -37,6 +37,7 @@ ENV PHP_POST_MAX_SIZE 10M
 # Add volumes for MySQL 
 VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
 
+RUN ./run.sh
 RUN rm -rf /app 
 
 ADD limesurvey.tar.bz2 /
