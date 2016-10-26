@@ -42,12 +42,13 @@ RUN rm -rf /app
 RUN wget https://www.limesurvey.org/stable-release?download=1908:limesurvey2551%20161026targz -O limesurvey.tar.gz
 RUN tar -xvzf limesurvey.tar.gz
 
-RUN mv limesurvey app; \
-	mkdir -p /uploadstruct; \
-	chown -R www-data:www-data /app
 
-RUN cp -r /app/upload/* /uploadstruct ; \
+RUN mkdir -p /uploadstruct; \
+    cp -r /limesurvey/upload/* /uploadstruct ; \
 	chown -R www-data:www-data /uploadstruct
+    
+RUN mv limesurvey/ /var/www/html/limesurvey/; \
+    chown www-data:www-data -R /var/www/html/limesurvey
 
 RUN chown www-data:www-data /var/lib/php5
 
